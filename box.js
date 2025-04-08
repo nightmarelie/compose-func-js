@@ -1,13 +1,12 @@
-// const nextCharForNumberString = str => {
-//     const trimmed = str.trim();
-//     const number = parseInt(trimmed);
-//     const nextNumber = number + 1;
-//
-//     return String.fromCharCode(nextNumber);
-// }
+const util = require('util');
+
+const Box = x => ({
+    map: f => Box(f(x)),
+    [util.inspect.custom]: () => `Box(${x})`,
+});
 
 const nextCharForNumberString = str => {
-    return [str]
+    return Box(str)
         .map(s => s.trim())
         .map(s => parseInt(s))
         .map(n => n + 1)
