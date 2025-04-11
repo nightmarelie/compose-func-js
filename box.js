@@ -15,7 +15,7 @@ let result = nextCharForNumberString(" 64 ");
 
 
 const moneyToFloat = str => {
-    return parseFloat(str.replace(/[$,]/g, ''))
+    return Box(str).map(s => s.replace(/[$,]/g, '')).fold(s => parseFloat(s));
 };
 
 const percentToFloat = str => {
