@@ -12,11 +12,17 @@ const Either = Right || Left;
 
 let result = Right(2).map(x => x + 2).fold(x => 'error', x => x / 2);
 
-const findColor = (color) => ({
-        red: '#FF0000',
-        green: '#00FF00',
-        blue: '#0000FF',
-    }
-)[color];
+const findColor = (color) => {
+    const found = ({
+            red: '#FF0000',
+            green:
+                '#00FF00',
+            blue:
+                '#0000FF',
+        }
+    )[color];
 
-console.log(findColor('red'));
+    return found ? Right(found) : Left('Color not found');
+};
+
+console.log(findColor('red').map(x => x.slice(1)).fold(x => x, x => x.toUpperCase()));
