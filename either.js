@@ -10,6 +10,13 @@ const Left = x => ({
 
 const Either = Right || Left;
 
-const result = Right(2).map(x => x + 2).fold(x => x * 2, x => x / 2);
+let result = Right(2).map(x => x + 2).fold(x => 'error', x => x / 2);
 
-console.log(result);
+const findColor = (color) => ({
+        red: '#FF0000',
+        green: '#00FF00',
+        blue: '#0000FF',
+    }
+)[color];
+
+console.log(findColor('red'));
