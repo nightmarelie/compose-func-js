@@ -11,6 +11,24 @@ const nextCharForNumberString = str => {
         .fold(n => String.fromCharCode(n))
 }
 
-const result = nextCharForNumberString(" 64 ");
+let result = nextCharForNumberString(" 64 ");
+
+
+const moneyToFloat = str => {
+    return parseFloat(str.replace(/[$,]/g, ''))
+};
+
+const percentToFloat = str => {
+    return parseFloat(str.replace(/%/g, '')) / 100
+};
+
+const applyDiscount = (price, discount) => {
+    const cost = moneyToFloat(price);
+    const savings = percentToFloat(discount);
+
+    return cost - (cost * savings);
+}
+
+result = applyDiscount("$100.00", "20%");
 
 console.log(result);
