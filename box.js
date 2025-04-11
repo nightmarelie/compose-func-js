@@ -19,7 +19,7 @@ const moneyToFloat = str => {
 };
 
 const percentToFloat = str => {
-    return parseFloat(str.replace(/%/g, '')) / 100
+    return Box(str).map(s => s.replace(/[$,]/g, '')).map(s => parseFloat(s)).fold(n => n / 100)
 };
 
 const applyDiscount = (price, discount) => {
