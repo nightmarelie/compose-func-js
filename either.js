@@ -12,6 +12,10 @@ const Either = Right || Left;
 
 let result = Right(2).map(x => x + 2).fold(x => 'error', x => x / 2);
 
+const fromNullable = x => {
+    return x ? Right(x) : Left('Value is null');
+}
+
 const findColor = (color) => {
     const found = ({
             red: '#FF0000',
@@ -22,7 +26,7 @@ const findColor = (color) => {
         }
     )[color];
 
-    return found ? Right(found) : Left('Color not found');
+    return fromNullable(found);
 };
 
-console.log(findColor('red').map(x => x.slice(1)).fold(x => x, x => x.toUpperCase()));
+console.log(findColor('black').map(x => x.slice(1)).fold(x => x, x => x.toUpperCase()));
