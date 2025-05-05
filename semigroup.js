@@ -7,6 +7,8 @@ const Sum = x => ({
     inspect: () => `Sum(${x})`,
 });
 
+Sum.empty = () => Sum(0);
+
 const result = Sum(1).concat(Sum(2)).concat(Sum(3)).fold();
 
 const All = x => ({
@@ -15,6 +17,8 @@ const All = x => ({
     fold: () => x,
     inspect: () => `All(${x})`,
 });
+
+All.empty = () => All(true);
 
 const result2 = All(true).concat(All(true)).concat(All(false)).fold();
 
