@@ -1,11 +1,15 @@
 const fs = require('fs');
 
 const Right = x => ({
-    map: f => Right(f(x)), fold: (_, g) => g(x),
+    map: f => Right(f(x)),
+    fold: (_, g) => g(x),
+    chain: f => f(x),
 })
 
 const Left = x => ({
-    map: f => Left(x), fold: (f, _) => f(x),
+    chain: f => Left(x),
+    map: f => Left(x),
+    fold: (f, _) => f(x),
 })
 
 const Either = Right || Left;
