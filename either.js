@@ -50,7 +50,7 @@ const tryCatch = (fn) => {
 // }
 
 const getPort = () => {
-    return tryCatch(() => fs.readFileSync('config.json')).map(str => JSON.parse(str)).map(config => config.port).fold(() => 3000, x => x);
+    return tryCatch(() => fs.readFileSync('config.json')).chain(str => tryCatch(() => JSON.parse(str))).map(config => config.port).fold(() => 3000, x => x);
 }
 
 
