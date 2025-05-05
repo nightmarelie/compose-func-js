@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const Right = x => ({
     map: f => Right(f(x)),
     fold: (_, g) => g(x),
@@ -29,4 +31,27 @@ const findColor = (color) => {
     return fromNullable(found);
 };
 
-console.log(findColor('black').map(x => x.slice(1)).fold(x => x, x => x.toUpperCase()));
+// console.log(findColor('black').map(x => x.slice(1)).fold(x => x, x => x.toUpperCase()));
+
+const tryCatch = (fn) => {
+    return (...args) => {
+        try {
+            return Right(fn(...args));
+        } catch (e) {
+            return Left(e);
+        }
+    }
+}
+
+const getPort = () => {
+    try {
+        const str = fs.readFileSync('config.json');
+
+        const config = JSON.parse(str);
+        return config.port;
+    } catch (e) {
+        return 3000;
+    }
+}
+
+console.log(getPort());
