@@ -3,6 +3,11 @@ const Box = x => ({
     fold: f => f(x),
 });
 
+const LazyBox = x => ({
+    map: f => LazyBox(() => f(x())),
+    fold: f => f(x()),
+});
+
 const nextCharForNumberString = str => {
     return Box(str)
         .map(s => s.trim())
