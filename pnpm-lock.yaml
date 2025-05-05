@@ -1,0 +1,17 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  data.task:
+    specifier: ^3.1.2
+    version: 3.1.2
+
+packages:
+
+  /data.task@3.1.2:
+    resolution: {integrity: sha512-gGDjno8m/FS1kdMU3EmKcLaO1enFyfCV/EscvDZ4+KZDSg9xHePa2VFfWd+QO5PUp18NdCIziOpaSUE4Efw8/w==}
+    deprecated: This package is no longer supported. Consider switching to fp-ts
+    dev: false
