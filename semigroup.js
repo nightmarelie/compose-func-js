@@ -27,4 +27,21 @@ const First = x => ({
 
 
 const result3 = First('test1').concat(First('test2')).concat(First('test3')).fold();
-console.log(result3);
+
+const acc1 = {
+    name: First('John'),
+    isPaid: All(true),
+    age: Sum(30),
+    friends: ['Alice', 'Bob'],
+}
+
+const acc2 = {
+    name: First('John'),
+    isPaid: All(true),
+    age: Sum(25),
+    friends: ['Charlie', 'Dave'],
+}
+
+const result4 = acc1.concat(acc2).concat(acc2).fold();
+
+console.log(result4);
