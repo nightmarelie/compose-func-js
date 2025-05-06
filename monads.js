@@ -4,4 +4,4 @@ const Box = require('./box');
 // F.of, pure, chain (flat, bind, >>=)
 
 httpGet('/users')
-    .map(user => httpGet('/comments/' + user.id)) // Task(Task([Comment]))
+    .chain(user => httpGet('/comments/' + user.id)) // Task([Comment])
