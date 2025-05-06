@@ -1,11 +1,13 @@
 const Box = x => ({
     map: f => Box(f(x)),
     fold: f => f(x),
+    chain: f => f(x),
 });
 
 const LazyBox = x => ({
     map: f => LazyBox(() => f(x())),
     fold: f => f(x()),
+    chain: f => f(x),
 });
 
 const nextCharForNumberString = str => {
@@ -34,3 +36,8 @@ const applyDiscount = (price, discount) => {
 result = applyDiscount("$100.00", "20%");
 
 console.log(result);
+
+module.exports = {
+    Box,
+    LazyBox,
+};
