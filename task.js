@@ -23,4 +23,4 @@ const app = () => {
         .chain(newData => writeFile('config.json', newData));
 }
 
-app();
+app().fork((e) => console.log(e), () => console.log('done'));
