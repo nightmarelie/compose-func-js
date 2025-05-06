@@ -9,22 +9,18 @@ const launchMissiles = () => {
     }, 1000);
 };
 
+const readFile = (fileName, encode) => new Task((rej, res) => fs.readFile(fileName, encode, (err, data) => {
+    err ? rej(err) : res(data);
+}));
+
+const writeFile = (fileName, newData) => new Task((rej, res) => fs.writeFile(fileName, newData, (err) => {
+    err ? rej(err) : res(() => console.log('File updated successfully'));
+}));
+
 const app = () => {
-    fs.readFile('config.json', 'utf8', (err, data) => {
-        if (err) {
-            throw err;
-        }
-
-        const newData = data.replace(/8/g, '6');
-
-        fs.writeFile('config.json', newData, (err) => {
-            if (err) {
-                throw err;
-            }
-
-            console.log('File updated successfully');
-        });
-    });
+    return readFile('config.json', 'utf8')
+        .map(data => data.replace(/8/g, '6'))
+        .chain(newData => writeFile('config.json', newData));
 }
 
 app();
